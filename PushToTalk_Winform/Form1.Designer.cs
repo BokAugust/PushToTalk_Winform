@@ -36,30 +36,33 @@
             this.label1 = new System.Windows.Forms.Label();
             this.hotKey_label = new System.Windows.Forms.Label();
             this.changeHotkey_btn = new System.Windows.Forms.Button();
+            this.autoOptimizeMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // changeHotkeyToolStripMenuItem
             // 
+            this.changeHotkeyToolStripMenuItem.Enabled = false;
             this.changeHotkeyToolStripMenuItem.Name = "changeHotkeyToolStripMenuItem";
-            this.changeHotkeyToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.changeHotkeyToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.changeHotkeyToolStripMenuItem.Text = "Change Hotkey";
             this.changeHotkeyToolStripMenuItem.Click += new System.EventHandler(this.changeHotkeyToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autoOptimizeMemoryToolStripMenuItem,
             this.changeHotkeyToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(200, 92);
             // 
             // notifyIcon1
             // 
@@ -95,6 +98,16 @@
             this.changeHotkey_btn.UseVisualStyleBackColor = true;
             this.changeHotkey_btn.Click += new System.EventHandler(this.changeHotkey_btn_Click);
             // 
+            // autoOptimizeMemoryToolStripMenuItem
+            // 
+            this.autoOptimizeMemoryToolStripMenuItem.Checked = true;
+            this.autoOptimizeMemoryToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoOptimizeMemoryToolStripMenuItem.Name = "autoOptimizeMemoryToolStripMenuItem";
+            this.autoOptimizeMemoryToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.autoOptimizeMemoryToolStripMenuItem.Text = "Auto Optimize Memory";
+            this.autoOptimizeMemoryToolStripMenuItem.CheckedChanged += new System.EventHandler(this.autoOptimizeMemoryToolStripMenuItem_CheckedChanged);
+            this.autoOptimizeMemoryToolStripMenuItem.Click += new System.EventHandler(this.autoOptimizeMemoryToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,6 +139,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label hotKey_label;
         private System.Windows.Forms.Button changeHotkey_btn;
+        private System.Windows.Forms.ToolStripMenuItem autoOptimizeMemoryToolStripMenuItem;
     }
 }
 

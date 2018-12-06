@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("PushToTalk")]
-[assembly: AssemblyDescription("A easy tools for PushToTalk.")]
+[assembly: AssemblyDescription("A simple tool gives you a choice for Push To Talk.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PushToTalk")]

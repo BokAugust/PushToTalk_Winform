@@ -12,3 +12,17 @@ E:\Works\程序源码\2018\PushToTalk_Winform\PushToTalk_Winform\bin\Debug\NAudi
 E:\Works\程序源码\2018\PushToTalk_Winform\PushToTalk_Winform\bin\Debug\NAudio.xml
 E:\Works\程序源码\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.csproj.CopyComplete
 E:\Works\程序源码\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.Form1.resources
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\bin\Debug\PushToTalk_Winform.exe.config
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\bin\Debug\PushToTalk_Winform.exe
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\bin\Debug\PushToTalk_Winform.pdb
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\bin\Debug\Gma.System.MouseKeyHook.dll
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\bin\Debug\NAudio.dll
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\bin\Debug\NAudio.xml
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.csprojAssemblyReference.cache
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.Form1.resources
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.Properties.Resources.resources
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.csproj.GenerateResource.cache
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.csproj.CoreCompileInputs.cache
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.csproj.CopyComplete
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.exe
+E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.pdb

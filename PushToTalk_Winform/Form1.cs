@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Timers;
 using System.Windows.Forms;
 using Gma.System.MouseKeyHook;
 using NAudio.CoreAudioApi;
@@ -12,23 +14,31 @@ namespace PushToTalk_Winform
         private IKeyboardMouseEvents m_GlobalHook;
         public MouseButtons unmuteDefault = MouseButtons.XButton1;
         public MouseButtons toggleDefault = MouseButtons.XButton2;
+        public System.Timers.Timer timer;
 
         public Form1()
         {
             InitializeComponent();
             Subscribe();
-
+            setTimer();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.notifyIcon1.Icon = Properties.Resources.mic_off;
-            this.BeginInvoke(new Action(() => {
+            notifyIcon1.Icon = Properties.Resources.mic_off;
+            BeginInvoke(new Action(() => {
                 this.Hide();
                 this.Opacity = 1;
-            }));            
+            }));        
+            
+            //check the checkbox of memory
+            if (this.autoOptimizeMemoryToolStripMenuItem.Checked == true)
+            {                
+                timer.Start();                
+            }
         }
-        
+
+        #region Fuction About Control Mics
         public void muteMic()
         {
             this.notifyIcon1.Icon = Properties.Resources.mic_off;
@@ -56,9 +66,6 @@ namespace PushToTalk_Winform
             }
         }
 
-
-        //Function
-
         private void updateMicStatus(MMDevice device)
         {
             disposeDevice(device);
@@ -77,13 +84,11 @@ namespace PushToTalk_Winform
             var enumerator = new MMDeviceEnumerator();
             var result = enumerator.GetDefaultAudioEndpoint(DataFlow.Capture, Role.Communications);
             enumerator.Dispose();
-
-            //tbIcon.Text = result.DeviceFriendlyName;
-
             return result;
         }
+        #endregion
 
-        //HOTKEY
+        #region Function About Hotkeys
         public void Subscribe()
         {
             m_GlobalHook = Hook.GlobalEvents();
@@ -114,7 +119,6 @@ namespace PushToTalk_Winform
                 unmuteMic();
                 e.Handled = true;
             }
-
         }
 
         private void GlobalHookMouseUpExt(object sender, MouseEventExtArgs e)
@@ -127,18 +131,96 @@ namespace PushToTalk_Winform
                 e.Handled = true;
                 hotKey_label.Text = toggleDefault.ToString();
             }
-
         }
 
         public void Unsubscribe()
         {
             m_GlobalHook.MouseDownExt -= GlobalHookMouseDownExt;
             m_GlobalHook.KeyPress -= GlobalHookKeyPress;
-
             //It is recommened to dispose it 
             m_GlobalHook.Dispose();
         }
+        #endregion
 
+        #region Function About Memorys
+        [DllImport("psapi.dll")]
+        static extern int EmptyWorkingSet(IntPtr hwProc);
+
+        [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
+        public static extern int SetProcessWorkingSetSize(IntPtr process, int minSize, int maxSize);
+        public static void ClearMemory()
+        {
+
+            //1st
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
+            //2st
+            Process.GetCurrentProcess().MinWorkingSet = new IntPtr(5);
+
+            //3st
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+            {
+                SetProcessWorkingSetSize(Process.GetCurrentProcess().Handle, -1, -1);
+            }
+
+            //4st
+            Process[] processes = Process.GetProcesses();
+            foreach (Process process in processes)
+            {
+                if ((process.ProcessName == "System") && (process.ProcessName == "Idle"))
+                    continue;
+                try
+                {
+                    EmptyWorkingSet(process.Handle);
+                }
+                catch (Exception e)
+                {
+                    //Some process might be denied.
+                    //Trace.WriteLine(e.ToString());
+                }
+            }
+        }
+
+        public void setTimer()
+        {
+            // Create a timer with a 1 minute interval.
+            timer = new System.Timers.Timer(60000);
+            // Hook up the Elapsed event for the timer. 
+            timer.Elapsed += OnTimedEvent;
+            timer.AutoReset = true;
+            timer.Enabled = false;
+            timer.Enabled = true;
+        }
+
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            ClearMemory();
+            Trace.WriteLine("memory...");
+        }
+
+        private void autoOptimizeMemoryToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (autoOptimizeMemoryToolStripMenuItem.Checked == false)
+            {
+                timer.Stop();
+                Trace.WriteLine("you were turn off the memory");
+            }
+            else
+            {
+                timer.Start();
+                Trace.WriteLine("you were turn on the memory");
+            }
+        }
+
+        private void autoOptimizeMemoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (autoOptimizeMemoryToolStripMenuItem.Checked == true)
+                autoOptimizeMemoryToolStripMenuItem.Checked = false;
+            else
+                autoOptimizeMemoryToolStripMenuItem.Checked = true;
+        }
+        #endregion
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -169,6 +251,7 @@ namespace PushToTalk_Winform
 
             //this.Enabled = false;
         }
+
 
     }
 }
