@@ -32,11 +32,11 @@
             this.changeHotkeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.autoOptimizeMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.hotKey_label = new System.Windows.Forms.Label();
             this.changeHotkey_btn = new System.Windows.Forms.Button();
-            this.autoOptimizeMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +63,14 @@
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(200, 92);
+            // 
+            // autoOptimizeMemoryToolStripMenuItem
+            // 
+            this.autoOptimizeMemoryToolStripMenuItem.Name = "autoOptimizeMemoryToolStripMenuItem";
+            this.autoOptimizeMemoryToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.autoOptimizeMemoryToolStripMenuItem.Text = "Auto Optimize Memory";
+            this.autoOptimizeMemoryToolStripMenuItem.CheckedChanged += new System.EventHandler(this.autoOptimizeMemoryToolStripMenuItem_CheckedChanged);
+            this.autoOptimizeMemoryToolStripMenuItem.Click += new System.EventHandler(this.autoOptimizeMemoryToolStripMenuItem_Click);
             // 
             // notifyIcon1
             // 
@@ -97,16 +105,6 @@
             this.changeHotkey_btn.Text = "Change Hotkey";
             this.changeHotkey_btn.UseVisualStyleBackColor = true;
             this.changeHotkey_btn.Click += new System.EventHandler(this.changeHotkey_btn_Click);
-            // 
-            // autoOptimizeMemoryToolStripMenuItem
-            // 
-            this.autoOptimizeMemoryToolStripMenuItem.Checked = true;
-            this.autoOptimizeMemoryToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autoOptimizeMemoryToolStripMenuItem.Name = "autoOptimizeMemoryToolStripMenuItem";
-            this.autoOptimizeMemoryToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.autoOptimizeMemoryToolStripMenuItem.Text = "Auto Optimize Memory";
-            this.autoOptimizeMemoryToolStripMenuItem.CheckedChanged += new System.EventHandler(this.autoOptimizeMemoryToolStripMenuItem_CheckedChanged);
-            this.autoOptimizeMemoryToolStripMenuItem.Click += new System.EventHandler(this.autoOptimizeMemoryToolStripMenuItem_Click);
             // 
             // Form1
             // 

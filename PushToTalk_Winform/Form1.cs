@@ -25,6 +25,9 @@ namespace PushToTalk_Winform
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            muteMic();
+
             notifyIcon1.Icon = Properties.Resources.mic_off;
             BeginInvoke(new Action(() => {
                 this.Hide();
@@ -95,13 +98,13 @@ namespace PushToTalk_Winform
 
             m_GlobalHook.MouseDownExt += GlobalHookMouseDownExt;
             m_GlobalHook.MouseUpExt += GlobalHookMouseUpExt;
-            m_GlobalHook.KeyPress += GlobalHookKeyPress;
+            //m_GlobalHook.KeyPress += GlobalHookKeyPress;
         }
 
-        private void GlobalHookKeyPress(object sender, KeyPressEventArgs e)
-        {
-            Console.WriteLine("KeyPress: \t{0}", e.KeyChar);
-        }
+        //private void GlobalHookKeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    Console.WriteLine("KeyPress: \t{0}", e.KeyChar);
+        //}
 
         private void GlobalHookMouseDownExt(object sender, MouseEventExtArgs e)
         {
@@ -136,7 +139,7 @@ namespace PushToTalk_Winform
         public void Unsubscribe()
         {
             m_GlobalHook.MouseDownExt -= GlobalHookMouseDownExt;
-            m_GlobalHook.KeyPress -= GlobalHookKeyPress;
+            //m_GlobalHook.KeyPress -= GlobalHookKeyPress;
             //It is recommened to dispose it 
             m_GlobalHook.Dispose();
         }
