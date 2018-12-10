@@ -16,6 +16,7 @@ namespace PushToTalk_Winform
         public MouseButtons toggleDefault = MouseButtons.XButton2;
         public System.Timers.Timer timer;
 
+
         public Form1()
         {
             InitializeComponent();
@@ -254,7 +255,6 @@ namespace PushToTalk_Winform
 
             //this.Enabled = false;
         }
-
 
     }
 }
