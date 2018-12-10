@@ -1,6 +1,7 @@
 # PushToTalk
 
 Here's a simple tool that gives you a choice to "Push To Talk" on windows for your any social applications.
+
 When you start to use `PushToTalk` :
 
 - it will `mute` your primary micphone.
