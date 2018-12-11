@@ -33,13 +33,14 @@ namespace PushToTalk_Winform
             BeginInvoke(new Action(() => {
                 this.Hide();
                 this.Opacity = 1;
-            }));        
-            
+            }));
+
             //check the checkbox of memory
             if (this.autoOptimizeMemoryToolStripMenuItem.Checked == true)
-            {                
-                timer.Start();                
+            {
+                timer.Start();
             }
+
         }
 
         #region Fuction About Control Mics
@@ -54,7 +55,7 @@ namespace PushToTalk_Winform
             this.notifyIcon1.Icon = Properties.Resources.mic_on;
             setMicMuteStatus(false);
         }
-                     
+
         public void setMicMuteStatus(bool doMute)
         {
             var device = getPrimaryMicDevice();
@@ -62,6 +63,23 @@ namespace PushToTalk_Winform
             if (device != null)
             {
                 device.AudioEndpointVolume.Mute = doMute;
+                updateMicStatus(device);
+            }
+            else
+            {
+                updateMicStatus(null);
+            }
+        }
+
+        public void changeMicVolume(double number)
+        {
+            var device = getPrimaryMicDevice();
+            var volume = device.AudioEndpointVolume.MasterVolumeLevelScalar;
+
+            if (device != null)
+            {
+                device.AudioEndpointVolume.MasterVolumeLevelScalar = (float)number;
+                Trace.WriteLine(device.AudioEndpointVolume.MasterVolumeLevelScalar);
                 updateMicStatus(device);
             }
             else
@@ -109,7 +127,7 @@ namespace PushToTalk_Winform
 
         private void GlobalHookMouseDownExt(object sender, MouseEventExtArgs e)
         {
-            Console.WriteLine("MouseDown: \t{0}; \t System Timestamp: \t{1}", e.Button, e.Timestamp);        
+            Console.WriteLine("MouseDown: \t{0}; \t System Timestamp: \t{1}", e.Button, e.Timestamp);
 
             if (e.Button == toggleDefault)
             {
@@ -249,12 +267,69 @@ namespace PushToTalk_Winform
 
         private void changeHotkey_btn_Click(object sender, EventArgs e)
         {
-            //hotKey_label.Text = "Waiting...";
-            //setKeys = true;
-            //_changeHotkey();
-
-            //this.Enabled = false;
+            this.Show();
         }
 
+        #region The event of Volume
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            changeMicVolume(0.1);
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            changeMicVolume(0.2);
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            changeMicVolume(0.3);
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            changeMicVolume(0.4);
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            changeMicVolume(0.5);
+        }
+
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            changeMicVolume(0.6);
+        }
+
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            changeMicVolume(0.7);
+        }
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            changeMicVolume(0.8);
+        }
+
+        private void toolStripMenuItem9_Click(object sender, EventArgs e)
+        {
+            changeMicVolume(0.9);
+        }
+
+        private void toolStripMenuItem10_Click(object sender, EventArgs e)
+        {
+            changeMicVolume(1);
+        }
+
+        #endregion
+
+        private void contextMenuStrip1_Opened(object sender, EventArgs e)
+        {
+            var device = getPrimaryMicDevice();
+            var volume = device.AudioEndpointVolume.MasterVolumeLevelScalar;
+            string volume1 = string.Format("{0:0%}", volume);
+            changeVolumeToolStripMenuItem.Text = "Change Mic Volume" + " ( " + volume1 + " )";
+        }
     }
 }
