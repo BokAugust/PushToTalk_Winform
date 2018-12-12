@@ -25,4 +25,3 @@ E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winf
 E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.csproj.CopyComplete
 E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.exe
 E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.pdb
-E:\Works\C#\2018\PushToTalk_Winform\PushToTalk_Winform\obj\Debug\PushToTalk_Winform.csprojAssemblyReference.cache
