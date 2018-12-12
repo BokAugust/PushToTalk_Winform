@@ -38,9 +38,20 @@ namespace PushToTalk_Winform
             //check the checkbox of memory
             if (this.autoOptimizeMemoryToolStripMenuItem.Checked == true)
             {
+                timer.Enabled = true;
                 timer.Start();
             }
 
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            notifyIcon1.Dispose();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            notifyIcon1.Dispose();
         }
 
         #region Fuction About Control Mics
@@ -212,7 +223,6 @@ namespace PushToTalk_Winform
             timer.Elapsed += OnTimedEvent;
             timer.AutoReset = true;
             timer.Enabled = false;
-            timer.Enabled = true;
         }
 
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
@@ -225,11 +235,13 @@ namespace PushToTalk_Winform
         {
             if (autoOptimizeMemoryToolStripMenuItem.Checked == false)
             {
+                timer.Enabled = false;
                 timer.Stop();
                 Trace.WriteLine("you were turn off the memory");
             }
             else
             {
+                timer.Enabled = true;
                 timer.Start();
                 Trace.WriteLine("you were turn on the memory");
             }
@@ -249,16 +261,6 @@ namespace PushToTalk_Winform
             Application.Exit();
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            notifyIcon1.Dispose();
-        }
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            notifyIcon1.Dispose();
-        }
-
         private void changeHotkeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Opacity = 100;
@@ -274,53 +276,88 @@ namespace PushToTalk_Winform
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            cleanChecked();
             changeMicVolume(0.1);
+            toolStripMenuItem1.Checked = true;
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
+            cleanChecked();
             changeMicVolume(0.2);
+            toolStripMenuItem2.Checked = true;
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
+            cleanChecked();
             changeMicVolume(0.3);
+            toolStripMenuItem3.Checked = true;
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
+            cleanChecked();
             changeMicVolume(0.4);
+            toolStripMenuItem4.Checked = true;
         }
 
         private void toolStripMenuItem5_Click(object sender, EventArgs e)
         {
+            cleanChecked();
             changeMicVolume(0.5);
+            toolStripMenuItem5.Checked = true;
         }
 
         private void toolStripMenuItem6_Click(object sender, EventArgs e)
         {
+            cleanChecked();
             changeMicVolume(0.6);
+            toolStripMenuItem6.Checked = true;
         }
 
         private void toolStripMenuItem7_Click(object sender, EventArgs e)
         {
+            cleanChecked();
             changeMicVolume(0.7);
+            toolStripMenuItem7.Checked = true;
         }
 
         private void toolStripMenuItem8_Click(object sender, EventArgs e)
         {
+            cleanChecked();
             changeMicVolume(0.8);
+            toolStripMenuItem8.Checked = true;
         }
 
         private void toolStripMenuItem9_Click(object sender, EventArgs e)
         {
+            cleanChecked();
             changeMicVolume(0.9);
+            toolStripMenuItem9.Checked = true;
         }
 
         private void toolStripMenuItem10_Click(object sender, EventArgs e)
         {
+            cleanChecked();
             changeMicVolume(1);
+            toolStripMenuItem10.Checked = true;
         }
+
+        private void cleanChecked()
+        {
+            toolStripMenuItem1.Checked = false;
+            toolStripMenuItem2.Checked = false;
+            toolStripMenuItem3.Checked = false;
+            toolStripMenuItem4.Checked = false;
+            toolStripMenuItem5.Checked = false;
+            toolStripMenuItem6.Checked = false;
+            toolStripMenuItem7.Checked = false;
+            toolStripMenuItem8.Checked = false;
+            toolStripMenuItem9.Checked = false;
+            toolStripMenuItem10.Checked = false;
+        }
+    
 
         #endregion
 
