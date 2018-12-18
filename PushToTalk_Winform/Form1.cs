@@ -12,9 +12,11 @@ namespace PushToTalk_Winform
     {
 
         private IKeyboardMouseEvents m_GlobalHook;
-        public MouseButtons unmuteDefault = MouseButtons.XButton1;
+        //public MouseButtons unmuteDefault = MouseButtons.XButton1;
         public MouseButtons toggleDefault = MouseButtons.XButton2;
         public System.Timers.Timer timer;
+        public System.Timers.Timer timer_toggle;
+        public int _clickNumber = 0;
 
         public Form1()
         {
@@ -41,17 +43,25 @@ namespace PushToTalk_Winform
                 timer.Start();
             }
 
+            timer_toggle = new System.Timers.Timer(1000);
+            timer_toggle.Elapsed += CheckNumbers;
+            timer_toggle.AutoReset = true;
+            timer_toggle.Enabled = false;
+            timer_toggle.Start();
+
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void CheckNumbers(object source,ElapsedEventArgs e)
         {
-            notifyIcon1.Dispose();
-        }
+            if (_clickNumber >= 3)
+            {
+                unmuteMic();               
+            }
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            notifyIcon1.Dispose();
+            Trace.WriteLine(_clickNumber);
+            _clickNumber = 0;
         }
+        
 
         #region Fuction About Control Mics
         public void muteMic()
@@ -142,15 +152,14 @@ namespace PushToTalk_Winform
             if (e.Button == toggleDefault)
             {
                 unmuteMic();
-                e.Handled = true;
-                hotKey_label.Text = toggleDefault.ToString();
+                e.Handled = true;                
             }
 
-            if (e.Button == unmuteDefault)
-            {
-                unmuteMic();
-                e.Handled = true;
-            }
+            //if (e.Button == unmuteDefault)
+            //{
+            //    unmuteMic();
+            //    e.Handled = true;
+            //}
         }
 
         private void GlobalHookMouseUpExt(object sender, MouseEventExtArgs e)
@@ -161,8 +170,9 @@ namespace PushToTalk_Winform
             {
                 muteMic();
                 e.Handled = true;
-                hotKey_label.Text = toggleDefault.ToString();
+                _clickNumber++;
             }
+
         }
 
         public void Unsubscribe()
@@ -255,6 +265,18 @@ namespace PushToTalk_Winform
         }
         #endregion
 
+        #region Events of Froms.
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            notifyIcon1.Dispose();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            notifyIcon1.Dispose();
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m_GlobalHook.Dispose();
@@ -271,6 +293,15 @@ namespace PushToTalk_Winform
         {
             this.Show();
         }
+
+        private void contextMenuStrip1_Opened(object sender, EventArgs e)
+        {
+            var device = getPrimaryMicDevice();
+            var volume = device.AudioEndpointVolume.MasterVolumeLevelScalar;
+            string volume1 = string.Format("{0:0%}", volume);
+            changeVolumeToolStripMenuItem.Text = "Change Mic Volume" + " ( " + volume1 + " )";
+        }
+        #endregion
 
         #region The event of Volume
 
@@ -361,12 +392,5 @@ namespace PushToTalk_Winform
 
         #endregion
 
-        private void contextMenuStrip1_Opened(object sender, EventArgs e)
-        {
-            var device = getPrimaryMicDevice();
-            var volume = device.AudioEndpointVolume.MasterVolumeLevelScalar;
-            string volume1 = string.Format("{0:0%}", volume);
-            changeVolumeToolStripMenuItem.Text = "Change Mic Volume" + " ( " + volume1 + " )";
-        }
     }
 }
