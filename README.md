@@ -26,6 +26,7 @@ The `MouseButton X2` is the button that I am used to , but the hotkey you can cu
 ### 简单介绍
 
 这是一个小工具，可以帮助你在 Windows 系统下的任何情景下实现“按键发言”的效果。
+
 很多时候，我们并不希望正在语音通话的成员听到除自己之外的一些杂音或者环境音。
 
 当你开始使用`按键发言`：
