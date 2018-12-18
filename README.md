@@ -1,8 +1,6 @@
 # PushToTalk -（按键发言）
 ![avatar](https://github.com/BokAugust/PushToTalk_Winform/blob/master/PushToTalk.png?raw=true)
 
-## English Guide
-
 ### What is this
 
 Here's a simple tool that gives you a choice to "PushToTalk" on windows for your any social applications.
@@ -20,6 +18,8 @@ When you start to use `PushToTalk` :
 ### TODO
 
 The `MouseButton X2` is the button that I am used to , but the hotkey you can customize in a future version.
+
+***
 
 ## 中文手册
 
