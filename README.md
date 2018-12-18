@@ -9,6 +9,7 @@ When you start to use `PushToTalk` :
 
 ### How to use
 
+![avatar](https://github.com/BokAugust/PushToTalk_Winform/blob/master/PushToTalk.png?raw=true)
 - Hold down `MouseButton X2` will temporarily `unmute` your micphone until you release the button.
 - Tap the `MouseButton X2` more than `3 times in 1 second` , it will `unmute` your micphone for a long time. 
   - Actually the `unmute` status will until you tap the button again.
